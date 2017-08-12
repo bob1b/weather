@@ -11,7 +11,7 @@ use JSON;
 use Data::Dumper;
 
 
-my $api_key = "QycgAEC2iFEB8WdGDrmm1nB4ksyHE4Vd";
+my $api_key = "Umn6NxjyQjHqjdYhUmvKQDVI1uNfHiXt";
 my $base = "http://dataservice.accuweather.com";
 my $query = "86315";
 
@@ -59,7 +59,7 @@ if ($response->is_success) {
 }
 
 # encode info hash as JSON
-my %out = ( 'location' => $location, 'weather' => $weather );
+my %out = ( 'location' => $location, 'weather' => $weather_info );
 my $json_out = JSON->new->utf8->encode(\%out);
 
 print $json_out;
