@@ -1,0 +1,47 @@
+<html>
+<head>
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./style.css">
+  <script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
+</head>
+<body>
+  <div id="content">
+    <h1>Weather</h1>
+
+    <form class="theForm">
+      <label>Location (zip/postal code)
+        <input type="text" name="location" id="location" />
+      </label>
+      <input type="submit" />
+    </form>
+
+    <section>
+      <h2>Report</h2>
+      <p id="report"></p>
+    </section>
+  </div>
+
+  <script type="text/javascript">
+
+$( ".theForm" ).ready(function() {
+
+  $('.theForm').submit( function(e) {
+    var location = $("#location").val().trim();
+    console.log("'" + location + "'");
+    if ( location !== "" ){
+      var url = "http://70.32.24.233/cgi-bin/weather/fetch.pl?q=" + location;
+      $.getJSON( url, function( data ){
+          console.log(data);
+        }
+      );
+    }
+
+    e.preventDefault();
+  });
+
+});
+
+  </script>
+
+</body>
+</html>
