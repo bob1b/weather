@@ -15,19 +15,16 @@
 </head>
 <body>
   <div id="content">
-    <h1>Weather (in progress)</h1>
+    <h1>Weather</h1>
 
-    <form class="theForm">
+    <form class="theForm big" action="">
       <label>Location (zip/postal code)
         <input type="number" name="location" id="location" />
       </label>
       <input type="submit" />
     </form>
 
-    <section>
-      <h2>Report</h2>
-      <p id="report"></p>
-    </section>
+    <section id="report" class="inactive"></section>
 
     <section id="report_template" class="hidden">
       <h3><a class="cityName" href="%link" target="_blank">%name</a></h3>

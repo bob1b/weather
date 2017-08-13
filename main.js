@@ -103,10 +103,13 @@ $(document).ready(function() {
           tmpl = tmpl.replace("%uv", dispInfo.UV);
 
 
-          $("#report").html( tmpl );
+          $("#report").removeClass("inactive")
+                      .html( tmpl );
           if (!dispInfo.isDay){
             $("#report").addClass("isNight");
           }
+
+          $(".theForm").removeClass("big");
 
           console.log(dispInfo);
       });

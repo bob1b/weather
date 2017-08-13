@@ -1,9 +1,20 @@
 #content { margin:20px; padding:20px; background-color:#eee; font-family:arial, sans-serif; }
 h1 { padding:10px -; font-size:1.5em; }
-form { padding:10px; margin:20px 0; border:1px dotted #ccc; }
+
+.theForm { padding:10px; margin:20px 0; color:#000; transition:font-size 500ms; }
+.theForm input[type=number] { width:6em; border:1px solid #999; font-size:inherit; text-align:center; transition:padding 200ms; }
+.theForm input[type=submit] { transition:padding 200ms; }
+.theForm.big { font-size:1.6em; color:#505050; }
+.theForm.big input[type=number] { padding:8px;  }
+.theForm.big input[type=submit] { padding:14px; }
+
 h2 { font-size:1.2em; }
-section { padding:20px; background-color:#fff; }
-#report { padding:20px; border-top:1px solid #ccc; }
+section { height:auto; padding:20px; background-color:#fff; transition:height 800ms; }
+section.inactive { height:0; padding:0; }
+
+#report { height:auto; padding:20px; border-top:1px solid #ccc; }
+#report.inactive { padding:0; border-top:none; }
+
 .hidden { position:absolute; left:-3000px; }
 a.cityName { font-size:1.2em; letter-spacing:0.07em; color:#444; text-decoration:none; border-bottom:1px dotted #555; }
 a.cityName:hover { border-bottom:solid 1px; }
