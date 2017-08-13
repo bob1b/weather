@@ -10,10 +10,12 @@ use LWP::UserAgent;
 use JSON;
 use Data::Dumper;
 
+my $q = CGI->new;
+my @params = $q->param('q');
+my $query = $params[0] or "86315";
 
 my $api_key = "Umn6NxjyQjHqjdYhUmvKQDVI1uNfHiXt";
 my $base = "http://dataservice.accuweather.com";
-my $query = "86315";
 
 
 # match zip code/city to location key
