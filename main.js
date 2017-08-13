@@ -57,19 +57,32 @@ $(document).ready(function() {
     if ( loc !== "" ){
       var url = "http://70.32.24.233/cgi-bin/weather/fetch.pl?q=" + loc;
       $.getJSON( url, function( data ){
-          var dispInfo = { name:data.location.Details.DMA.EnglishName,
-                           geo:data.location.GeoPosition.Latitude + ", " +
-                               data.location.GeoPosition.Longitude,
-                           elev:data.location.GeoPosition.Elevation.Imperial.Value + " " +
-                                data.location.GeoPosition.Elevation.Imperial.Unit,
-                           timezone:data.location.TimeZone.Code,
-                           isDay:data.weather.IsDayTime,
-                           link:data.weather.Link,
-                           temp:data.weather.Temperature.Imperial.Value + " " +
-                                data.weather.Temperature.Imperial.Unit,
-                           weatherText:data.weather.WeatherText,
-                           weatherIcon:data.weather.WeatherIcon,
-                           weatherIconURL:getWeatherIconURL(data.weather.WeatherIcon) };
+          var l = data.location;
+          var w = data.weather;
+
+          var dispInfo = { name:l.Details.DMA.EnglishName,
+                           geo:l.GeoPosition.Latitude + ", " +
+                               l.GeoPosition.Longitude,
+                           elev:l.GeoPosition.Elevation.Imperial.Value + " " +
+                                l.GeoPosition.Elevation.Imperial.Unit,
+                           timezone:l.TimeZone.Code,
+                           isDay:w.IsDayTime,
+                           link:w.Link,
+                           temp:w.Temperature.Imperial.Value + " " +
+                                w.Temperature.Imperial.Unit,
+                           realFeelTemp:w.RealFeelTemperature.Imperial.Value + " " +
+                                        w.RealFeelTemperature.Imperial.Unit,
+                           dewPoint:w.DewPoint.Imperial.Value + " " +
+                                    w.DewPoint.Imperial.Unit,
+                           wind:w.Wind.Direction.Degrees + "degrees (" +
+                                w.Wind.Direction.English + ") at " +
+                                w.Wind.Speed.Imperial.Value + " " +
+                                w.Wind.Speed.Imperial.Unit,
+                           UV:"UV index: " + w.UVIndexText,
+                           humidity:w.RelativeHumidity,
+                           weatherText:w.WeatherText,
+                           weatherIcon:w.WeatherIcon,
+                           weatherIconURL:getWeatherIconURL(w.WeatherIcon) };
 
           var tmpl = $("#report_template").html();
           tmpl = tmpl.replace("%name", dispInfo.name);
