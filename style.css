@@ -1,8 +1,10 @@
 #content { margin:20px; padding:20px; background-color:#eee; font-family:arial, sans-serif; }
 h1 { padding:10px -; font-size:1.5em; }
 
-.theForm { padding:10px; margin:20px 0; color:#000; transition:font-size 500ms; }
-.theForm input[type=number] { width:6em; margin-left:12px; border:1px solid #999; font-size:inherit; text-align:center; transition:padding 200ms; }
+.theForm { overflow:hidden; position:relative; padding:10px; margin:20px 0; color:#000; transition:font-size 500ms; }
+.theForm label { float:left; margin-right:12px; line-height:2em; }
+.theForm .inputWrap { float:left; line-height:2em; }
+.theForm input[type=number] { width:6em; border:1px solid #999; font-size:inherit; text-align:center; transition:padding 200ms; }
 .theForm input[type=submit] { transition:padding 200ms; }
 .theForm.big { font-size:1.6em; color:#505050; }
 .theForm.big input[type=number] { padding:8px;  }
@@ -20,25 +22,24 @@ a:hover { border-bottom:solid 1px !important; }
 
 .hidden { position:absolute; left:-3000px; }
 a.cityName { font-size:1.2em; letter-spacing:0.07em; color:#444; text-decoration:none; border-bottom:1px dotted #555; }
-.box { display: inline-block; max-width:30%; margin:20px 20px 20px 0; padding:7px 0 0 0;; background-color:#e0e0e0; border-radius:8px; box-shadow:4px 4px 4px -2px #999; line-height:1.2em; font-size:0.95em; vertical-align:text-top; }
+.box { display: inline-block; min-width:250px; max-width:30%; margin:20px 20px 20px 0; padding:7px 0 0 0;; background-color:#e0e0e0; border-radius:8px; box-shadow:4px 4px 4px -2px #999; line-height:1.2em; font-size:0.95em; vertical-align:text-top; }
 .box .label { padding:3px; margin-bottom:10px; border-top:1px solid #b1aaaa; border-bottom:1px solid #fff; font-size:1.2em; text-align:center; line-height:normal; background-color:#fc8; color:#333; }
+.box table { width:100%; }
 .box table td { padding:6px 10px; }
 .box table tbody td:nth-child(even) {
   background: #eee;
 }
-
 .box .wrap { overflow:hidden; position:relative; margin:10px 18px; }
-
 .boxLoc {}
 .boxLoc p { margin-bottom:10px; font-size:1.5em; color:#444; text-align:center; border-bottom:1px solid #ccc; line-height:1.6em; }
 .boxLoc .temp { float:left; margin-right:20px; font-size: 1.25em; line-height:28px; }
-
-.boxWeather {}
 .boxWeather .wrap img,
 .boxWeather .wrap .weatherText { vertical-align:middle; }
 .boxWeather .wrap .real { margin:5px; text-align:center; font-size:1.1em; }
+.boxWind p.wind { line-height:1.7em; text-align:center; font-size:1.15em; }
 
-.boxWind {}
-.boxWind p.wind { line-height:1.7em; }
-
-.boxOther {}
+@media (max-width: 620px) {
+  .theForm.big { font-size:1.3em; }
+  .theForm.big label { line-height:normal; margin-bottom:10px; }
+  .theForm.big input[type="submit"] { padding:11px; }
+}
