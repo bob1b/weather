@@ -48,6 +48,12 @@ function dump(arr,level) {
 	return dumped_text;
 }
 
+function geoLink(geo){
+  return '<a href="https://www.google.com/maps/search/' +
+         geo.Latitude + "," + geo.Longitude + '" target="_blank">' +
+         geo.Latitude + ", " + geo.Longitude + '</a>';
+}
+
 $(document).ready(function() {
 
   $('.theForm').submit( function(e) {
@@ -61,8 +67,7 @@ $(document).ready(function() {
           var w = data.weather;
 
           var dispInfo = { name:l.Details.DMA.EnglishName,
-                           geo:l.GeoPosition.Latitude + ", " +
-                               l.GeoPosition.Longitude,
+                           geo:geoLink(l.GeoPosition),
                            elev:l.GeoPosition.Elevation.Imperial.Value + " " +
                                 l.GeoPosition.Elevation.Imperial.Unit,
                            timezone:l.TimeZone.Code,
