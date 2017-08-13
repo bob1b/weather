@@ -4,3 +4,4 @@ form { padding:10px; margin:20px 0; border:1px dotted #ccc; }
 h2 { font-size:1.2em; }
 section { padding:20px; background-color:#fff; }
 section p { padding:20px; border-top:1px solid #ccc; }
+.hidden { position:absolute; left:-3000px; }
