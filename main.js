@@ -68,7 +68,21 @@ $(document).ready(function() {
                            weatherIcon:data.weather.WeatherIcon,
                            weatherIconURL:getWeatherIconURL(data.weather.WeatherIcon) };
 
-          $("#report").html( dump( dispInfo ) );
+          var tmpl = $("#report_template").html();
+          tmpl = tmpl.replace("%name", dispInfo.name);
+          tmpl = tmpl.replace("%geo", dispInfo.geo);
+          tmpl = tmpl.replace("%elev", dispInfo.elev);
+          tmpl = tmpl.replace("%timezone", dispInfo.timezone);
+          tmpl = tmpl.replace("%link", dispInfo.link);
+          tmpl = tmpl.replace("%temp", dispInfo.temp);
+          tmpl = tmpl.replace("%weatherText", dispInfo.weatherText);
+          tmpl = tmpl.replace("%weatherIconURL", dispInfo.weatherIconoURL);
+
+          $("#report").html( tmpl );
+          if (!dispInfo.isDay){
+            $("#report").addClass("isNight");
+          }
+
           console.log(dispInfo);
       });
     }
