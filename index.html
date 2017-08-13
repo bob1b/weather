@@ -26,14 +26,26 @@
 $( ".theForm" ).ready(function() {
 
   $('.theForm').submit( function(e) {
-    var location = $("#location").val().trim();
-    console.log("'" + location + "'");
-    if ( location !== "" ){
-      var url = "http://70.32.24.233/cgi-bin/weather/fetch.pl?q=" + location;
+    var loc = $("#location").val().trim();
+    var templ="";
+
+    if ( loc !== "" ){
+      var url = "http://70.32.24.233/cgi-bin/weather/fetch.pl?q=" + loc;
       $.getJSON( url, function( data ){
-          console.log(data);
-        }
-      );
+          var dispInfo = { name:data.location.Details.DMA.EnglishName,
+                           geo:data.location.GeoPosition.Latitude + ", " +
+                               data.location.GeoPosition.Longitude,
+                           elev:data.location.GeoPosition.Elevation.Imperial.Value + " " +
+                                data.location.GeoPosition.Elevation.Imperial.Unit,
+                           timezone:data.location.TimeZone.Code,
+                           isDay:data.weather.IsDayTime,
+                           link:data.weather.Link,
+                           temp:data.weather.Temperature.Imperial.Value + " " +
+                                data.weather.Temperature.Imperial.Unit,
+                           weatherText:data.weather.weatherText,
+                           weatherIcon:data.weather.weatherIcon };
+          console.log(dispInfo);
+      });
     }
 
     e.preventDefault();
