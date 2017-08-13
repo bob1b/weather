@@ -3,6 +3,9 @@ function getWeatherIconURL( id ){
                     21,22,23,24,25,26,29,30,31,32,33,34,35,36,37,38,
                     39,40,41,42,43,44 ];
   if ( typeof(id) !== "undefined" && $.inArray( id, valid_ids ) ){
+    if (id < 10){
+      id = "0" + id;
+    }
     return "media/" + id + "-s.png";
   } else {
     return "";
