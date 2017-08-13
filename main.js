@@ -72,14 +72,17 @@ $(document).ready(function() {
                                 w.Temperature.Imperial.Unit,
                            realFeelTemp:w.RealFeelTemperature.Imperial.Value + " " +
                                         w.RealFeelTemperature.Imperial.Unit,
-                           dewPoint:w.DewPoint.Imperial.Value + " " +
-                                    w.DewPoint.Imperial.Unit,
+
                            wind:w.Wind.Direction.Degrees + "degrees (" +
                                 w.Wind.Direction.English + ") at " +
                                 w.Wind.Speed.Imperial.Value + " " +
                                 w.Wind.Speed.Imperial.Unit,
-                           UV:"UV index: " + w.UVIndexText,
-                           humidity:w.RelativeHumidity,
+
+                           humidity:w.RelativeHumidity + "%",
+                           dewPoint:w.DewPoint.Imperial.Value + " " +
+                                    w.DewPoint.Imperial.Unit,
+                           UV:w.UVIndexText,
+
                            weatherText:w.WeatherText,
                            weatherIcon:w.WeatherIcon,
                            weatherIconURL:getWeatherIconURL(w.WeatherIcon) };
@@ -93,6 +96,12 @@ $(document).ready(function() {
           tmpl = tmpl.replace("%temp", dispInfo.temp);
           tmpl = tmpl.replace("%weatherText", dispInfo.weatherText);
           tmpl = tmpl.replace("%weatherIconURL", dispInfo.weatherIconURL);
+          tmpl = tmpl.replace("%realFeelTemp", dispInfo.realFeelTemp);
+          tmpl = tmpl.replace("%wind", dispInfo.wind);
+          tmpl = tmpl.replace("%humidity", dispInfo.humidity);
+          tmpl = tmpl.replace("%dewpoint", dispInfo.dewPoint);
+          tmpl = tmpl.replace("%uv", dispInfo.UV);
+
 
           $("#report").html( tmpl );
           if (!dispInfo.isDay){

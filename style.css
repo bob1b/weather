@@ -3,5 +3,18 @@ h1 { padding:10px -; font-size:1.5em; }
 form { padding:10px; margin:20px 0; border:1px dotted #ccc; }
 h2 { font-size:1.2em; }
 section { padding:20px; background-color:#fff; }
-section p { padding:20px; border-top:1px solid #ccc; }
+#report { padding:20px; border-top:1px solid #ccc; }
 .hidden { position:absolute; left:-3000px; }
+a.cityName { font-size:1.2em; letter-spacing:0.07em; color:#444; text-decoration:none; border-bottom:1px dotted #555; }
+a.cityName:hover { border-bottom:solid 1px; }
+.box { display: inline-block; max-width:30%; margin:20px 20px 20px 0; padding:20px; background-color:#e0e0e0; border-radius:8px; box-shadow:4px 4px 4px -2px #999; line-height:1.2em; font-size:0.95em; vertical-align:text-top; }
+.box table td { margin-right:10px; }
+.boxLoc {}
+.boxLoc p { margin-bottom:10px; font-size:1.5em; color:#444; text-align:center; border-bottom:1px solid #ccc; line-height:1.6em; }
+.boxLoc .wrap { overflow:hidden; position:relative; }
+.boxLoc .wrap img,
+.boxLoc .wrap .weatherText,
+.boxLoc .wrap .temp { float:left; margin-right:20px; font-size: 1.25em; line-height:28px; }
+.boxWeather { padding-top:6px; }
+.boxWind {}
+.boxOther {}
