@@ -17,7 +17,7 @@ my $query = "86315";
 
 
 # match zip code/city to location key
-# http://dataservice.accuweather.com/locations/v1/cities/search?apikey=QycgAEC2iFEB8WdGDrmm1nB4ksyHE4Vd&q=prescott%20valley&details=true&offset=1
+# http://dataservice.accuweather.com/locations/v1/cities/search?apikey=Umn6NxjyQjHqjdYhUmvKQDVI1uNfHiXt&q=prescott%20valley&details=true&offset=1
 
 my $city_search_url = "$base/locations/v1/cities/search?apikey=$api_key&q=$query&details=true&offset=1";
 
@@ -43,23 +43,28 @@ my $loc_id = $location->{'Details'}->{'Key'};
 
 
 # use location key to fetch current weather
-# http://dataservice.accuweather.com/currentconditions/v1/37001_PC?apikey=QycgAEC2iFEB8WdGDrmm1nB4ksyHE4Vd
+# http://dataservice.accuweather.com/currentconditions/v1/2134108?apikey=Umn6NxjyQjHqjdYhUmvKQDVI1uNfHiXt
 
 my $weather_url = "$base/currentconditions/v1/$loc_id?apikey=$api_key";
 $request = HTTP::Request->new(GET => $weather_url);
 $response = $ua->request($request);
-my $weather = $response->content;
+$content = $response->content;
 
-my $weather_info;
+my $weathers_ref;
 if ($response->is_success) {
-	$weather_info = JSON->new->utf8->decode($content);
+	$weathers_ref = JSON->new->utf8->decode($content);
 } else {
     print "Error: url = $weather_url, \nresponse = " . Dumper($response);
     exit(2);
 }
 
+# use only the first weather report for now
+my @weathers = @$weathers_ref;
+my $weather = $weathers[0];
+
+
 # encode info hash as JSON
-my %out = ( 'location' => $location, 'weather' => $weather_info );
+my %out = ( 'location' => $location, 'weather' => $weather );
 my $json_out = JSON->new->utf8->encode(\%out);
 
 print $json_out;
