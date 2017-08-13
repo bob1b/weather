@@ -27,36 +27,45 @@
     <section id="report" class="inactive"></section>
 
     <section id="report_template" class="hidden">
-      <h3><a class="cityName" href="%link" target="_blank">%name</a></h3>
-
-      <div class="box boxLoc">
-        <table>
-          <tr> <td>Lat/long</td><td class="geo"><b>%geo</b></td> </tr>
-          <tr> <td>Elevation</td><td class="elev"><b>%elev</b></td> </tr>
-          <tr> <td>Timezone</td><td class="tz"><b>%timezone</b></td> </tr>
-        </table>
-      </div>
+      <h3><a class="cityName" href="%link" target="_blank" title="Accuweather page">%name</a></h3>
 
       <div class="box boxWeather">
-        <p>The weather is</p>
+        <div class="label">The weather is</div>
         <div class="wrap">
           <img src="%weatherIconURL" />
           <span class="weatherText">%weatherText</span>
-		  <span class="temp">%temp<br>Feels like %realFeelTemp</span>
+		  <span class="temp">%temp</span>
+          <div class="real">Feels like %realFeelTemp</div>
+        </div>
+      </div>
+
+      <div class="box boxLoc">
+        <div class="label">Location</div>
+        <div class="wrap">
+          <table>
+            <tr> <td>Lat/long</td><td class="geo">%geo</td> </tr>
+            <tr> <td>Elevation</td><td class="elev">%elev</td> </tr>
+            <tr> <td>Timezone</td><td class="tz">%timezone</td> </tr>
+          </table>
         </div>
       </div>
 
       <div class="box boxWind">
-        <p>Wind is</p>
-        <p class="wind">%wind</p>
+        <div class="label">Wind is</div>
+        <div class="wrap">
+          <p class="wind">%wind</p>
+        </div>
       </div>
 
       <div class="box boxOther">
-        <table>
-          <tr> <td>Humidity</td><td>%humidity</td> </tr>
-          <tr> <td>Dewpoint</td><td>%dewpoint</td> </tr>
-          <tr> <td>UV index</td><td>%uv</td> </tr>
-        </table>
+        <div class="label">Other info</div>
+        <div class="wrap">
+          <table>
+            <tr> <td>Humidity</td><td>%humidity</td> </tr>
+            <tr> <td>Dewpoint</td><td>%dewpoint</td> </tr>
+            <tr> <td>UV index</td><td>%uv</td> </tr>
+          </table>
+        </div>
       </div>
 
     </section>

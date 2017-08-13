@@ -50,7 +50,8 @@ function dump(arr,level) {
 
 function geoLink(geo){
   return '<a href="https://www.google.com/maps/search/' +
-         geo.Latitude + "," + geo.Longitude + '" target="_blank">' +
+         geo.Latitude + "," + geo.Longitude + '" target="_blank" ' +
+         'title="Google map">' +
          geo.Latitude + ", " + geo.Longitude + '</a>';
 }
 
@@ -78,8 +79,8 @@ $(document).ready(function() {
                            realFeelTemp:w.RealFeelTemperature.Imperial.Value + " " +
                                         w.RealFeelTemperature.Imperial.Unit,
 
-                           wind:w.Wind.Direction.Degrees + "degrees (" +
-                                w.Wind.Direction.English + ") at " +
+                           wind:w.Wind.Direction.Degrees + " degrees (" +
+                                w.Wind.Direction.English + ")<br> at " +
                                 w.Wind.Speed.Imperial.Value + " " +
                                 w.Wind.Speed.Imperial.Unit,
 
