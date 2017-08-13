@@ -1,5 +1,7 @@
 <html>
 <head>
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./style.css">
   <script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
 </head>
 <body>
@@ -27,8 +29,8 @@ $( ".theForm" ).ready(function() {
     var location = $("#location").val().trim();
     console.log("'" + location + "'");
     if ( location !== "" ){
-      $.getJSON( "http://70.32.24.233/cgi-bin/weather/fetch.pl?q=" + location,
-        function( data ){
+      var url = "http://70.32.24.233/cgi-bin/weather/fetch.pl?q=" + location;
+      $.getJSON( url, function( data ){
           console.log(data);
         }
       );
