@@ -76,7 +76,7 @@ $(document).ready(function() {
           tmpl = tmpl.replace("%link", dispInfo.link);
           tmpl = tmpl.replace("%temp", dispInfo.temp);
           tmpl = tmpl.replace("%weatherText", dispInfo.weatherText);
-          tmpl = tmpl.replace("%weatherIconURL", dispInfo.weatherIconoURL);
+          tmpl = tmpl.replace("%weatherIconURL", dispInfo.weatherIconURL);
 
           $("#report").html( tmpl );
           if (!dispInfo.isDay){
