@@ -46,7 +46,7 @@ my $loc_id = $location->{'Details'}->{'Key'};
 # use location key to fetch current weather
 # http://dataservice.accuweather.com/currentconditions/v1/2134108?apikey=Umn6NxjyQjHqjdYhUmvKQDVI1uNfHiXt
 
-my $weather_url = "$base/currentconditions/v1/$loc_id?apikey=$api_key";
+my $weather_url = "$base/currentconditions/v1/$loc_id?apikey=$api_key&details=true";
 $request = HTTP::Request->new(GET => $weather_url);
 $response = $ua->request($request);
 $content = $response->content;
