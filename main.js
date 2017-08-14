@@ -67,57 +67,44 @@ $(document).ready(function() {
           var l = data.location;
           var w = data.weather;
 
-          var dispInfo = { name:l.Details.DMA.EnglishName,
-                           geo:geoLink(l.GeoPosition),
-                           elev:l.GeoPosition.Elevation.Imperial.Value + " " +
-                                l.GeoPosition.Elevation.Imperial.Unit,
-                           timezone:l.TimeZone.Code,
-                           isDay:w.IsDayTime,
-                           link:w.Link,
-                           temp:w.Temperature.Imperial.Value + " " +
-                                w.Temperature.Imperial.Unit,
-                           realFeelTemp:w.RealFeelTemperature.Imperial.Value + " " +
-                                        w.RealFeelTemperature.Imperial.Unit,
-
-                           wind:w.Wind.Direction.Degrees + " degrees (" +
+    var keys = [ { n:"%name", v:l.Details.DMA.EnglishName },
+                 { n:"%geo", v:geoLink(l.GeoPosition) },
+                 { n:"%elev", v:l.GeoPosition.Elevation.Imperial.Value + " " +
+                                l.GeoPosition.Elevation.Imperial.Unit },
+                 { n:"%timezone", v:l.TimeZone.Code },
+                 { n:"%link", v:w.Link },
+                 { n:"%temp", v:w.Temperature.Imperial.Value + " " +
+                                w.Temperature.Imperial.Unit },
+                 { n:"%realFeelTemp", v:w.RealFeelTemperature.Imperial.Value + " " +
+                                        w.RealFeelTemperature.Imperial.Unit },
+                 { n:"%wind", v:w.Wind.Direction.Degrees + " degrees (" +
                                 w.Wind.Direction.English + ")<br> at " +
                                 w.Wind.Speed.Imperial.Value + " " +
-                                w.Wind.Speed.Imperial.Unit,
-
-                           humidity:w.RelativeHumidity + "%",
-                           dewPoint:w.DewPoint.Imperial.Value + " " +
-                                    w.DewPoint.Imperial.Unit,
-                           UV:w.UVIndexText,
-
-                           weatherText:w.WeatherText,
-                           weatherIcon:w.WeatherIcon,
-                           weatherIconURL:getWeatherIconURL(w.WeatherIcon) };
+                                w.Wind.Speed.Imperial.Unit },
+                 { n:"%humidity", v:w.RelativeHumidity + "%" },
+                 { n:"%dewPoint", v:w.DewPoint.Imperial.Value + " " +
+                                    w.DewPoint.Imperial.Unit },
+                 { n:"%uv", v:w.UVIndexText },
+                 { n:"%weatherText", v:w.WeatherText },
+                 { n:"%weatherIcon", v:w.WeatherIcon },
+                 { n:"%weatherIconURL", v:getWeatherIconURL(w.WeatherIcon) } ];
 
           var tmpl = $("#report_template").html();
-          tmpl = tmpl.replace("%name", dispInfo.name);
-          tmpl = tmpl.replace("%geo", dispInfo.geo);
-          tmpl = tmpl.replace("%elev", dispInfo.elev);
-          tmpl = tmpl.replace("%timezone", dispInfo.timezone);
-          tmpl = tmpl.replace("%link", dispInfo.link);
-          tmpl = tmpl.replace("%temp", dispInfo.temp);
-          tmpl = tmpl.replace("%weatherText", dispInfo.weatherText);
-          tmpl = tmpl.replace("%weatherIconURL", dispInfo.weatherIconURL);
-          tmpl = tmpl.replace("%realFeelTemp", dispInfo.realFeelTemp);
-          tmpl = tmpl.replace("%wind", dispInfo.wind);
-          tmpl = tmpl.replace("%humidity", dispInfo.humidity);
-          tmpl = tmpl.replace("%dewpoint", dispInfo.dewPoint);
-          tmpl = tmpl.replace("%uv", dispInfo.UV);
+
+          // fill in template
+          for ( var i = 0; i < keys.length; i++ ){
+            tmpl = tmpl.replace(keys[i].n, keys[i].v);
+          }
 
 
           $("#report").removeClass("inactive")
                       .html( tmpl );
-          if (!dispInfo.isDay){
+          if (w.IsDayTime){
             $("#report").addClass("isNight");
           }
 
           $(".theForm").removeClass("big");
 
-          console.log(dispInfo);
       });
     }
 
