@@ -1,5 +1,5 @@
 #content { margin:20px; padding:20px; background-color:#eee; font-family:arial, sans-serif; }
-h1 { padding:10px -; font-size:1.5em; }
+h1 { padding:10px; font-size:1.5em; }
 
 .theForm { overflow:hidden; position:relative; padding:10px; margin:20px 0; color:#000; transition:font-size 500ms; }
 .theForm label { float:left; margin-right:12px; line-height:2em; }
@@ -39,6 +39,7 @@ a.cityName { font-size:1.2em; letter-spacing:0.07em; color:#444; text-decoration
 .boxWind p.wind { line-height:1.7em; text-align:center; font-size:1.15em; }
 
 @media (max-width: 665px) {
+  #content { padding:0; }
   .box { display:block; margin:20px auto; }
 }
 @media (max-width: 620px) {
