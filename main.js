@@ -6,7 +6,7 @@ function getWeatherIconURL( id ){
     if (id < 10){
       id = "0" + id;
     }
-    return "media/" + id + "-s.png";
+    return "./media/" + id + "-s.png";
   } else {
     return "";
   }
@@ -86,7 +86,7 @@ $(document).ready(function() {
                                     w.DewPoint.Imperial.Unit },
                  { n:"%uv", v:w.UVIndexText },
                  { n:"%weatherText", v:w.WeatherText },
-                 { n:"%weatherIcon", v:w.WeatherIcon },
+//               { n:"%weatherIcon", v:w.WeatherIcon },
                  { n:"%weatherIconURL", v:getWeatherIconURL(w.WeatherIcon) } ];
 
           var tmpl = $("#report_template").html();
