@@ -24,28 +24,28 @@ function getWeatherIconURL( id ){
  * Docs: http://www.openjs.com/scripts/others/dump_function_php_print_r.php
  */
 function dump(arr,level) {
-	var dumped_text = "";
-	if(!level) level = 0;
-	
-	//The padding given at the beginning of the line.
-	var level_padding = "";
-	for(var j=0;j<level+1;j++) level_padding += "    ";
-	
-	if(typeof(arr) == 'object') { //Array/Hashes/Objects 
-		for(var item in arr) {
-			var value = arr[item];
-			
-			if(typeof(value) == 'object') { //If it is an array,
-				dumped_text += level_padding + "'" + item + "' ...\n";
-				dumped_text += dump(value,level+1);
-			} else {
-				dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
-			}
-		}
-	} else { //Stings/Chars/Numbers etc.
-		dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
-	}
-	return dumped_text;
+    var dumped_text = "";
+    if(!level) level = 0;
+
+    //The padding given at the beginning of the line.
+    var level_padding = "";
+    for(var j=0;j<level+1;j++) level_padding += "    ";
+
+    if(typeof(arr) == 'object') { //Array/Hashes/Objects
+        for(var item in arr) {
+            var value = arr[item];
+
+            if(typeof(value) == 'object') { //If it is an array,
+                dumped_text += level_padding + "'" + item + "' ...\n";
+                dumped_text += dump(value,level+1);
+            } else {
+                dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
+            }
+        }
+    } else { //Stings/Chars/Numbers etc.
+        dumped_text = "===>"+arr+"<===("+typeof(arr)+")";
+    }
+    return dumped_text;
 }
 
 function geoLink(geo){
@@ -57,6 +57,9 @@ function geoLink(geo){
 
 $(document).ready(function() {
 
+  // autofocus location input box
+  $("#location").focus();
+
   $('.theForm').submit( function(e) {
     var loc = $("#location").val().trim();
     var templ="";
@@ -67,27 +70,26 @@ $(document).ready(function() {
           var l = data.location;
           var w = data.weather;
 
-    var keys = [ { n:"%name", v:l.Details.DMA.EnglishName },
-                 { n:"%geo", v:geoLink(l.GeoPosition) },
-                 { n:"%elev", v:l.GeoPosition.Elevation.Imperial.Value + " " +
-                                l.GeoPosition.Elevation.Imperial.Unit },
-                 { n:"%timezone", v:l.TimeZone.Code },
-                 { n:"%link", v:w.Link },
-                 { n:"%temp", v:w.Temperature.Imperial.Value + " " +
-                                w.Temperature.Imperial.Unit },
-                 { n:"%realFeelTemp", v:w.RealFeelTemperature.Imperial.Value + " " +
-                                        w.RealFeelTemperature.Imperial.Unit },
-                 { n:"%wind", v:w.Wind.Direction.Degrees + " degrees (" +
-                                w.Wind.Direction.English + ")<br> at " +
-                                w.Wind.Speed.Imperial.Value + " " +
-                                w.Wind.Speed.Imperial.Unit },
-                 { n:"%humidity", v:w.RelativeHumidity + "%" },
-                 { n:"%dewPoint", v:w.DewPoint.Imperial.Value + " " +
-                                    w.DewPoint.Imperial.Unit },
-                 { n:"%uv", v:w.UVIndexText },
-                 { n:"%weatherText", v:w.WeatherText },
-//               { n:"%weatherIcon", v:w.WeatherIcon },
-                 { n:"%weatherIconURL", v:getWeatherIconURL(w.WeatherIcon) } ];
+          var keys = [ { n:"%name", v:l.Details.DMA.EnglishName },
+                       { n:"%geo", v:geoLink(l.GeoPosition) },
+                       { n:"%elev", v:l.GeoPosition.Elevation.Imperial.Value + " " +
+                                      l.GeoPosition.Elevation.Imperial.Unit },
+                       { n:"%timezone", v:l.TimeZone.Code },
+                       { n:"%link", v:w.Link },
+                       { n:"%temp", v:w.Temperature.Imperial.Value + " " +
+                                      w.Temperature.Imperial.Unit },
+                       { n:"%realFeelTemp", v:w.RealFeelTemperature.Imperial.Value + " " +
+                                              w.RealFeelTemperature.Imperial.Unit },
+                       { n:"%wind", v:w.Wind.Direction.Degrees + " degrees (" +
+                                      w.Wind.Direction.English + ")<br> at " +
+                                      w.Wind.Speed.Imperial.Value + " " +
+                                      w.Wind.Speed.Imperial.Unit },
+                       { n:"%humidity", v:w.RelativeHumidity + "%" },
+                       { n:"%dewPoint", v:w.DewPoint.Imperial.Value + " " +
+                                          w.DewPoint.Imperial.Unit },
+                       { n:"%uv", v:w.UVIndexText },
+                       { n:"%weatherText", v:w.WeatherText },
+                       { n:"%weatherIconURL", v:getWeatherIconURL(w.WeatherIcon) } ];
 
           var tmpl = $("#report_template").html();
 
